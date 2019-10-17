@@ -14,12 +14,12 @@
                     <li class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle active" data-toggle="dropdown">ユーザー情報</a>
                         <ul class="dropdown-menu dropdown-menu-right">
-                            <li class="dropdown-item"><a href="#">ユーザー詳細</a></li>
+                            <li class="dropdown-item">{!! link_to_route('users.show', 'ユーザー詳細', ['id' => Auth::id()]) !!}</li>
                             <li class="dropdown-divider"></li>
                             <li class="dropdown-item">{!! link_to_route('logout.get', 'ログアウト') !!}</li>
                         </ul>
                     </li>
-                    <li class="nav-item"><a href="#" class="nav-link active">登録者一覧</a></li>
+                    <li class="nav-item">{!! link_to_route('users.index', '登録者一覧', [], ['class' => 'nav-link active']) !!}</li>
                 
                 @else
                 
