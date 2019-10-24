@@ -10,7 +10,7 @@
             <ul class="navbar-nav mr-auto"></ul>
             <ul class="navbar-nav">
                 @if (Auth::check())
-                    <li class="nav-item"><a href="#" class="nav-link active">投稿</a></li>
+                    <li class="nav-item">{!! link_to_route('topics.create', '投稿', [], ['class' => 'nav-link active']) !!}</li>
                     <li class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle active" data-toggle="dropdown">ユーザー情報</a>
                         <ul class="dropdown-menu dropdown-menu-right">

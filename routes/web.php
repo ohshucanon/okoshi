@@ -11,8 +11,9 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::get('/', 'TopicsController@index');
+Route::get('what_is_okoshi', function () {
+    return view('what_is_okoshi');
 });
 
 //ユーザー登録
@@ -24,7 +25,26 @@ Route::get('login', 'Auth\LoginController@showLoginForm')->name('login.get');
 Route::post('login', 'Auth\LoginController@login')->name('login.post');
 Route::get('logout', 'Auth\LoginController@logout')->name('logout.get');
 
-//その他ユーザー機能
+//その他機能
 Route::group(['middleware' => ['auth']], function () {
+    
     Route::resource('users', 'UsersController', ['only' => ['index', 'show']]);
+    Route::group(['prefix' => 'users/{id}'], function () {
+        Route::get('usersdetails', 'UsersController@usersdetails')->name('users.usersdetails');
+        Route::get('favorites', 'UsersController@favorites')->name('users.favorites');
+    });
+    
+    Route::resource('topics', 'TopicsController', ['only' => ['create', 'store', 'destroy']]);
+    
+    Route::group(['prefix' => 'topics/{id}'], function () {
+        Route::resource('comments', 'CommentsController', ['only' => ['store', 'destroy']]);
+        Route::post('favorite', 'FavoritesController@store')->name('favorites.favorite');
+        Route::delete('unfavorite', 'FavoritesController@destroy')->name('favorites.unfavorite');
+    });
 });
+
+
+Route::group(['prefix' => 'topics/{id}'], function () {
+        Route::get('topicsdetails', 'TopicsController@topicsdetails')->name('topics.topicsdetails');
+});
+
