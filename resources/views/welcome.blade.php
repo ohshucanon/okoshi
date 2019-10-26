@@ -21,7 +21,7 @@
         </div>
     @else
         <!--<div class="center jumbotron p-5"-->
-        
+        <div class="p-3 m-3">
             <div class="text-center mb-3">
                 <h1 class="mb-3 mt-4 text-muted">地域おこし協力隊のための交流ツール【OKOSHI】</h1>
                 {!! link_to_route('signup.get', '投稿するには会員登録が必要です', [], ['class' => 'btn btn-success btn-lg']) !!}
@@ -29,8 +29,11 @@
             <div class="text-center text-muted mb-3 mt-3">
                  <h3>What's {!! link_to('what_is_okoshi', '【OKOSHI】') !!}?</h3>
             </div>
+        </div>
         
-        
+        <div class="text-center">
+        <h5 class="text-muted"><i class="fas fa-file-alt"></i> 投稿一覧</h5>
+        </div>
         <div class="row">
             <div class="col-sm-10 offset-sm-2">
                 @if (count($topics) > 0)
