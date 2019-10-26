@@ -8,7 +8,7 @@
                     <!--<p class="mb-0">{!! nl2br(e($topic->content)) !!}</p>-->
                 </div>
                 <div>
-                    <p class="mb-0 text-right">{{ $topic->user->activitybase }}／
+                    <p class="mb-0 text-right text-muted">{{ $topic->user->activitybase }}／
                     @if(Auth::check())
                         {!! link_to_route('users.show', $topic->user->name, ['id' => $topic->user->id]) !!}
                     @else

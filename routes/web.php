@@ -28,13 +28,13 @@ Route::get('logout', 'Auth\LoginController@logout')->name('logout.get');
 //その他機能
 Route::group(['middleware' => ['auth']], function () {
     
-    Route::resource('users', 'UsersController', ['only' => ['index', 'show']]);
+    Route::resource('users', 'UsersController', ['only' => ['index', 'update', 'show', 'edit']]);
     Route::group(['prefix' => 'users/{id}'], function () {
         Route::get('usersdetails', 'UsersController@usersdetails')->name('users.usersdetails');
         Route::get('favorites', 'UsersController@favorites')->name('users.favorites');
     });
     
-    Route::resource('topics', 'TopicsController', ['only' => ['create', 'store', 'destroy']]);
+    Route::resource('topics', 'TopicsController', ['only' => ['create', 'store', 'edit', 'update','destroy']]);
     
     Route::group(['prefix' => 'topics/{id}'], function () {
         Route::resource('comments', 'CommentsController', ['only' => ['store', 'destroy']]);

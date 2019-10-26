@@ -66,4 +66,32 @@ class TopicsController extends Controller
         
         return view('.topics.topicsdetails',$data);
     }
+    
+    public function edit($id)
+    {
+        $topic = Topic::find($id);
+        
+        return view('topics.edit', [
+            'topic' => $topic,
+        ]);
+    }
+    
+    public function update(Request $request, $id)
+    {
+        $topic = Topic::find($id);
+        $topic->title = $request->title;
+        $topic->content = $request->content;
+        
+        $topic->save();
+        
+        $comments = $topic->comments()->with(['user'])->get();
+        
+        $data = [
+            
+            'topic' => $topic,
+            'comments' => $comments,
+        ];
+        
+        return view('topics.topicsdetails',$data);
+    }
 }

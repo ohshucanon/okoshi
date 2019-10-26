@@ -61,4 +61,34 @@ class UsersController extends Controller
         
         return view('users.favorites', $data);
     }
+    
+    public function edit($id)
+    {
+        $user = User::find($id);
+        
+        return view('users.edit', [
+            'user' => $user,
+        ]);
+    }
+    
+    public function update(Request $request, $id)
+    {
+        $user = User::find($id);
+        $user->name = $request->name;
+        $user->activitybase = $request->activitybase;
+        $user->email = $request->email;
+        
+        $user->save();
+        
+        $topics = $user->topics()->orderBy('created_at', 'desc');
+        
+        $data = [
+            'user' => $user,
+            'topics' => $topics,
+        ];
+        
+        $data += $this->counts($user);
+        
+        return view('users.usersdetails',$data);
+    }
 }
