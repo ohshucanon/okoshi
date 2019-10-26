@@ -78,6 +78,11 @@ class TopicsController extends Controller
     
     public function update(Request $request, $id)
     {
+        $this->validate($request, [
+            'title' => 'required|max:50',
+            'content' => 'required|max:800',
+        ]);
+        
         $topic = Topic::find($id);
         $topic->title = $request->title;
         $topic->content = $request->content;
