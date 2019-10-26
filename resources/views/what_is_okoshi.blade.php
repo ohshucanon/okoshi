@@ -2,7 +2,6 @@
 
 @section('content')
     <div class="col-sm-12 p-2 mb-2 text-muted">
-        <div class="text-center"><img src="/storage/image/IMG_2963.jpg" width=65% alt="okoshi-logo"></div>
         <div class="mb-5 mt-4">
             <div class="text-center mb-3">
                 <h2>What's【OKOSHI】?</h2>
