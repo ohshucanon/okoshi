@@ -6,7 +6,7 @@
                 <div class="border-bottom m-0">
                       <h6 class="d-inline-block text-muted">
                           @if(Auth::check())
-                              {!! link_to_route('users.show', $comment->user->name, ['id' => $topic->user->id]) !!}
+                              {!! link_to_route('users.show', $comment->user->name, ['id' => $comment->user->id]) !!}
                           @else
                               {{ $comment->user->name }}
                           @endif

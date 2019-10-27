@@ -56,7 +56,7 @@ class TopicsController extends Controller
     public function topicsdetails($id)
     {
         $topic = Topic::find($id);
-        $comments = $topic->comments()->with(['user'])->get();
+        $comments = $topic->comments()->with(['user'])->orderBy('created_at', 'desc')->get();
         
         $data = [
             
@@ -64,16 +64,23 @@ class TopicsController extends Controller
             'comments' => $comments,
         ];
         
-        return view('.topics.topicsdetails',$data);
+        return view('topics.topicsdetails',$data);
     }
     
     public function edit($id)
     {
         $topic = Topic::find($id);
         
+        if (\Auth::id() === $topic->user_id) {
+        $topic = Topic::find($id);
+        
         return view('topics.edit', [
             'topic' => $topic,
         ]);
+        
+        }else{
+            return redirect ('/');
+        }
     }
     
     public function update(Request $request, $id)
@@ -89,14 +96,6 @@ class TopicsController extends Controller
         
         $topic->save();
         
-        $comments = $topic->comments()->with(['user'])->get();
-        
-        $data = [
-            
-            'topic' => $topic,
-            'comments' => $comments,
-        ];
-        
-        return view('topics.topicsdetails',$data);
+        return redirect()->route('topics.topicsdetails', [$topic]);
     }
 }
