@@ -17,11 +17,13 @@
             <div class="col-sm-10 p-2 mb-2 border border-success rounded">
                 <h3 class="mb-5 text-muted">ID：{{ $user->id }}</h3>
                 <h3 class="mb-5 text-muted">名前：{{ $user->name }}</h3>
+                <h3 class="mb-5 text-muted">活動エリア：{{ $user->activityarea }}</h3>
                 <h3 class="mb-2 text-muted">活動拠点：{{ $user->activitybase }}</h3>
                 <div class="clearfix">
                     <div class="float-right">
                         @if(Auth::id() == $user->id)
-                            {!! link_to_route('users.edit','ユーザー情報を編集', ['id' => $user->id], ['class' => 'btn btn-outline-success']) !!}
+                            {!! link_to_route('users.edit', 'ユーザー情報を編集', ['id' => $user->id], ['class' => 'btn btn-outline-success']) !!}
+                            {!! link_to_route('users.delete', '退会する', ['id' => $user->id], ['class' => 'btn btn-outline-danger']) !!}
                         @endif
                     </div>
                 </div>

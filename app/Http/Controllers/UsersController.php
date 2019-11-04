@@ -3,16 +3,25 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Request as RequestInfo;
 use App\User;
 use App\Comment;
 use App\Topic;
 
 class UsersController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $users = User::orderBy('id', 'desc')->paginate(10);
-
+        //dd($request->query('activityarea'));
+        $search = RequestInfo::get('activityarea');
+        
+        if ($search)
+        {
+            $users = User::where('activityarea', 'LIKE', "%$search%")->orderBy('id', 'desc')->paginate(10);
+        }else{
+            $users = User::orderBy('id', 'desc')->paginate(10);
+        }
+        
         return view('users.index', [
             'users' => $users,
         ]);
@@ -81,6 +90,7 @@ class UsersController extends Controller
     {
         $user = User::find($id);
         $user->name = $request->name;
+        $user->activityarea = $request->activityarea;
         $user->activitybase = $request->activitybase;
         $user->email = $request->email;
         
@@ -96,5 +106,32 @@ class UsersController extends Controller
         $data += $this->counts($user);
         
         return view('users.usersdetails',$data);
+    }
+
+    
+    //退会機能
+    public function delete($id)
+    {
+        $user = User::find($id);
+        
+        if (\Auth::id() === $user->id) {
+        
+        $topics = $user->topics()->get();
+        foreach ($topics as $topic){
+            $topic->delete();
+        }
+        
+        $comments = $user->comments()->get();
+        foreach ($comments as $comment){
+            $comment->delete();
+        }
+        
+        $user->delete(); // softDelete
+ 
+        return redirect()->to('/');
+        
+        } else {
+            return redirect ('/');   
+        }
     }
 }

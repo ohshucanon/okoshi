@@ -13,7 +13,7 @@
                     </div>
                 </div>
             </aside>
-            <div class="col-sm-10">
+            <div class="col-sm-8">
                 @if (count($topics) > 0)
                     @include('topics.topics', ['topics' => $topics])
                 @endif

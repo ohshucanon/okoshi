@@ -14,6 +14,11 @@
                 </div>
                 
                 <div class="form-group text-muted">
+                    {!! Form::label('activityarea', '活動エリア') !!}
+                    {!! Form::select('activityarea', ['北海道'=>'北海道', '東北'=>'東北', '関東'=>'関東', '中部'=>'中部', '近畿'=>'近畿', '中国'=>'中国', '四国'=>'四国', '九州'=>'九州', '沖縄'=>'沖縄'], null, ['class' => 'form-control']) !!}
+                </div>
+                
+                <div class="form-group text-muted">
                     {!! Form::label('activitybase', '活動拠点(例:東京都○○市地域おこし協力隊)') !!}
                     {!! Form::text('activitybase', old('activitybase'), ['class' => 'form-control']) !!}
                 </div>
