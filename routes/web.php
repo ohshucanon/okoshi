@@ -22,7 +22,7 @@ Route::post('signup', 'Auth\RegisterController@register')->name('signup.post');
 
 //ログイン認証
 Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
-Route::post('login', 'Auth\LoginController@login')->name('login.post');
+Route::post('login', 'Auth\LoginController@login')->name('login');
 Route::get('logout', 'Auth\LoginController@logout')->name('logout.get');
 
 //その他機能
@@ -49,3 +49,13 @@ Route::group(['prefix' => 'topics/{id}'], function () {
         Route::get('topicsdetails', 'TopicsController@topicsdetails')->name('topics.topicsdetails');
 });
 
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('passwordreset/mailable/preview', function () {
+  return new App\Mail\ResetNotification();
+});
+
+Route::get('passwordreset/mailable/send', 'ResetController@ResetNotification');

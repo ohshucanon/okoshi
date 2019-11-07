@@ -54,7 +54,7 @@
                     {!! Form::close() !!}
                 </div>
             @else
-                <h6>{!! link_to_route('login.get', '※コメントを投稿するにはログインが必要です', [], ['class' => 'btn btn-success btn-sm']) !!}</h6>
+                <h6>{!! link_to_route('login', '※コメントを投稿するにはログインが必要です', [], ['class' => 'btn btn-success btn-sm']) !!}</h6>
             @endif
             <div class="col-sm-10">
                 @if (count($comments) >0)

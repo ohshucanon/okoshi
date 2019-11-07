@@ -12,8 +12,8 @@ class UsersController extends Controller
 {
     public function index(Request $request)
     {
-        //dd($request->query('activityarea'));
-        $search = RequestInfo::get('activityarea');
+        //dd();
+        $search = $request->query('activityarea');
         
         if ($search)
         {
