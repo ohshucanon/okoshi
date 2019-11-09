@@ -22,6 +22,7 @@
             {!! Form::close() !!}
             
             <p class="mt-2">登録がまだの方はこちらから→ {!! link_to_route('signup.get', '会員登録') !!}</p>
+            <p class="mt-2">パスワードを忘れた方はこちらから→ {!! link_to('password/reset', $title = 'パスワードをリセットする', $attributes = [], $secure = null) !!}</p>
         </div>
     </div>
 @endsection

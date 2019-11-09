@@ -10,6 +10,7 @@
                         <div>
                             <h4 class="mb-4 text-muted">{!! nl2br(e($topic->title)) !!}</h4>
                             <p class="mb-4 text-muted">{!! nl2br(e($topic->content)) !!}</p>
+                            <p class="mb-0 text-right text-muted">投稿ジャンル：{!! nl2br(e($topic->topics_genre)) !!}</p>
                             <p class="mb-0 text-right text-muted">{{ $topic->user->activitybase }}／
                             @if(Auth::check())
                                 {!! link_to_route('users.show', $topic->user->name, ['id' => $topic->user->id]) !!}

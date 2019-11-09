@@ -13,10 +13,25 @@
                     </div>
                 </div>
             </aside>
-            <div class="col-sm-8">
+            <div class="col-sm-7 pr-0">
                 @if (count($topics) > 0)
                     @include('topics.topics', ['topics' => $topics])
                 @endif
+            </div>
+            <div class="col-sm-3">
+                <aside class="">
+                <form action="{{ action('TopicsController@index') }}" method="get">
+                    <div class="form-group">
+                        <div class="selectbox mb-2 text-muted">
+                            <h5><i class="fas fa-search"></i>投稿ジャンル別検索</h5>
+                            {!! Form::select('topics_genre', ['活動報告'=>'活動報告', '意見募集'=>'意見募集', '交流'=>'交流', '雑談'=>'雑談', 'その他'=>'その他'], null, ['class' => 'form-control']) !!}
+                        </div>
+                        <div class="submit">
+                            <input class="btn btn-outline-success"type="submit" value="検索">
+                        </div>
+                    </div>
+                </form>
+            </aside>
             </div>
         </div>
     @else
@@ -33,6 +48,21 @@
         
         <div class="text-center">
         <h5 class="text-muted"><i class="fas fa-file-alt"></i> 投稿一覧</h5>
+        </div>
+        <div class="row">
+            <div class="col-sm-3 offset-sm-2">
+                <form action="{{ action('TopicsController@index') }}" method="get">
+                        <div class="form-group">
+                            <div class="selectbox mb-2 text-muted">
+                                <h6><i class="fas fa-search"></i>投稿ジャンル別検索</h6>
+                                {!! Form::select('topics_genre', ['活動報告'=>'活動報告', '意見募集'=>'意見募集', '交流'=>'交流', '雑談'=>'雑談', 'その他'=>'その他'], null, ['class' => 'form-control']) !!}
+                            </div>
+                            <div class="submit">
+                                <input class="btn btn-outline-success"type="submit" value="検索">
+                            </div>
+                        </div>
+                    </form>
+            </div>
         </div>
         <div class="row">
             <div class="col-sm-10 offset-sm-2">

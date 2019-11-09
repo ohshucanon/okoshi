@@ -9,10 +9,18 @@ use App\User;
 
 class TopicsController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
+        $search = $request->query('topics_genre');
+        if ($search)
+        {
+            $topics = Topic::where('topics_genre', 'LIKE', "%$search%")->orderBy('id', 'desc')->paginate(10);
+        }else{
+        
         $data = ['topics' => null];
         $topics = Topic::orderBy('created_at','desc')->paginate(10);
+        
+        }
         
         /*if(\Auth::check()) {
             $user = \Auth::user();
@@ -34,11 +42,13 @@ class TopicsController extends Controller
         $this->validate($request, [
             'title' => 'required|max:50',
             'content' => 'required|max:800',
+            'topics_genre' => 'required',
         ]);
 
         $request->user()->topics()->create([
             'title' => $request->title,
             'content' => $request->content,
+            'topics_genre' => $request->topics_genre,
         ]);
 
         return redirect('/');
@@ -88,12 +98,14 @@ class TopicsController extends Controller
         $this->validate($request, [
             'title' => 'required|max:50',
             'content' => 'required|max:800',
+            'topics_genre' => 'required',
         ]);
         
         $topic = Topic::find($id);
         $topic->title = $request->title;
         $topic->content = $request->content;
-        
+        $topic->topics_genre = $request->topics_genre;
+    
         $topic->save();
         
         return redirect()->route('topics.topicsdetails', [$topic]);

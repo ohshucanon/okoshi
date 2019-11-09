@@ -12,8 +12,12 @@
                     <div class="form-group text-muted">
                         {!! Form::label('title', 'タイトル(50文字以内)') !!}
                         {!! Form::text('title', old('title'), ['class' => 'form-control']) !!}
+                        <br>
                         {!! Form::label('content', '本文(800文字以内)') !!}
                         {!! Form::textarea('content', old('content'), ['class' => 'form-control', 'rows' => '10']) !!}
+                        <br>
+                        {!! Form::label('topics_genre', '投稿ジャンル') !!}
+                        {!! Form::select('topics_genre', ['活動報告'=>'活動報告', '意見募集'=>'意見募集', '交流'=>'交流', '雑談'=>'雑談', 'その他'=>'その他'], null, ['class' => 'form-control']) !!}
                     </div>
                     {!! Form::submit('投稿する', ['class' => 'btn btn-success']) !!}
                 {!! Form::close() !!}

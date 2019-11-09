@@ -7,6 +7,9 @@
                     <h4 class="mb-0"><a class="inline-block" href="{{ route('topics.topicsdetails', ['id' => $topic->id]) }}">{!! nl2br(e($topic->title)) !!}</a></h4>
                     <!--<p class="mb-0">{!! nl2br(e($topic->content)) !!}</p>-->
                 </div>
+                <div class="mb-0 text-right text-muted">
+                    投稿ジャンル：{{ $topic->topics_genre }}
+                </div>
                 <div>
                     <p class="mb-0 text-right text-muted">{{ $topic->user->activitybase }}／
                     @if(Auth::check())
