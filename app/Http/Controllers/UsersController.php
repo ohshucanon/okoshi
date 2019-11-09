@@ -93,6 +93,7 @@ class UsersController extends Controller
         $user->activityarea = $request->activityarea;
         $user->activitybase = $request->activitybase;
         $user->email = $request->email;
+        $user->password = bcrypt($request->password);
         
         $user->save();
         
