@@ -27,11 +27,6 @@
                     {!! Form::text('email', old('email'), ['class' => 'form-control']) !!}
                 </div>
                 
-                <div class="form-group text-muted">
-                    {!! Form::label('password', 'パスワード(6文字以上)') !!}
-                    {!! Form::password('password', ['class' => 'form-control']) !!}
-                </div>
-                
                 {!! Form::submit('編集完了', ['class' => 'btn btn-success']) !!}
             {!! Form::close() !!}
             
