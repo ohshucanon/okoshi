@@ -7,6 +7,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use App\Notifications\CustomResetPassword;
 
+
 class User extends Authenticatable
 {
     use Notifiable;
