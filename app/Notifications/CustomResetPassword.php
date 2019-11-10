@@ -8,7 +8,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Auth\Notifications\ResetPassword;
 
-class CustomResetPasswor extends Notification
+class CustomResetPassword extends Notification
 {
     /**
      * The password reset token.
