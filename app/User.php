@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use App\Notifications\CustomResetPassword;
 
 class User extends Authenticatable
 {
@@ -83,5 +84,16 @@ class User extends Authenticatable
             // してなければ何もしない
             return false;
         }
+    }
+    
+    /**
+     * パスワード再設定メールの送信
+     *
+     * @param  string  $token
+     * @return void
+     */
+    public function sendPasswordResetNotification($token)
+    {
+        $this->notify(new CustomResetPassword($token));
     }
 }
