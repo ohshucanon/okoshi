@@ -10,7 +10,7 @@ use Illuminate\Auth\Notifications\ResetPassword;
 
 class CustomResetPasswor extends Notification
 {
-       /**
+    /**
      * The password reset token.
      * 
     /** @var string */
