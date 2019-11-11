@@ -24,7 +24,7 @@ class CustomResetPassword extends Notification
      * @param  string  $token
      * @return void
      */
-    public function __construct()
+    public function __construct($token)
     {
         $this->token = $token;
     }
