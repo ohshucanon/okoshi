@@ -6,7 +6,7 @@
 @if ($level == 'error')
 # Whoops!
 @else
-# こんにちは。
+# いつも【okoshi】をご利用いただきありがとうございます。
 @endif
 @endif
 
