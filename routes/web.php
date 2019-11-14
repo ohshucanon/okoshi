@@ -31,8 +31,10 @@ Route::group(['middleware' => ['auth']], function () {
     Route::resource('users', 'UsersController', ['only' => ['index', 'update', 'show', 'edit']]);
     Route::group(['prefix' => 'users/{id}'], function () {
         Route::get('usersdetails', 'UsersController@usersdetails')->name('users.usersdetails');
-        Route::get('usersdetails/delete', 'UsersController@delete')->name('users.delete');
+        Route::post('usersdetails/delete', 'UsersController@delete')->name('users.delete');
         Route::get('favorites', 'UsersController@favorites')->name('users.favorites');
+        Route::get('passwordEdit', 'UsersController@passwordEdit')->name('users.passwordEdit');
+        Route::put('passwordUpdate', 'UsersController@passwordUpdate')->name('users.passwordUpdate');
     });
     
     Route::resource('topics', 'TopicsController', ['only' => ['create', 'store', 'edit', 'update','destroy']]);
@@ -59,3 +61,12 @@ Route::get('passwordreset/mailable/preview', function () {
 });
 
 Route::get('passwordreset/mailable/send', 'ResetController@ResetNotification');
+
+//問い合わせ入力ページ
+Route::get('/contact', 'ContactController@index')->name('contact.index');
+
+//問い合わせ確認ページ
+Route::post('/contact/confirm', 'ContactController@confirm')->name('contact.confirm');
+
+//問い合わせ送信完了ページ
+Route::post('/contact/thanks', 'ContactController@send')->name('contact.send');

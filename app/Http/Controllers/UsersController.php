@@ -107,7 +107,40 @@ class UsersController extends Controller
         
         return view('users.usersdetails',$data);
     }
-
+    
+   public function passwordEdit($id)
+        {
+            $user = User::find($id);
+            
+            if (\Auth::id() === $user->id) {
+            $user = User::find($id);
+            
+            return view('users.passwordEdit', [
+                'user' => $user,
+            ]);
+            }else{
+                return redirect ('/');
+            }
+    }
+    
+    public function passwordUpdate(Request $request, $id)
+    {
+        $user = User::find($id);
+        $user->password = bcrypt($request->password);
+        
+        $user->save();
+        
+        $topics = $user->topics()->orderBy('created_at', 'desc');
+        
+        $data = [
+            'user' => $user,
+            'topics' => $topics,
+        ];
+        
+        $data += $this->counts($user);
+        
+        return view('users.usersdetails',$data);
+    }
     
     //退会機能
     public function delete($id)

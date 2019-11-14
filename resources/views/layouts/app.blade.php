@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html lang="{{ App::getLocale() }}">
     <head>
         <meta charset="utf-8">
         <title>OKOSHI</title>

@@ -20,6 +20,7 @@
                         </ul>
                     </li>
                     <li class="nav-item">{!! link_to_route('users.index', '登録者一覧', [], ['class' => 'nav-link active']) !!}</li>
+                    <li class="nav-item">{!! link_to_route('contact.index', '問い合わせ', [], ['class' => 'nav-link active']) !!}</li>
                 
                 @else
                 
