@@ -123,9 +123,21 @@ class UsersController extends Controller
             }
     }
     
+     protected function validator(array $data)
+    {
+        return Validator::make($data, [
+            'password' => 'required|string|min:6|confirmed',
+        ]);
+    }
+    
     public function passwordUpdate(Request $request, $id)
     {
+        $validated_data = $request->validate([
+            'password' => 'required|string|min:6|confirmed',
+        ]);
+        
         $user = User::find($id);
+        
         $user->password = bcrypt($request->password);
         
         $user->save();
