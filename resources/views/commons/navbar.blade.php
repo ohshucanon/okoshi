@@ -31,4 +31,9 @@
             </ul>
         </div>
     </nav>
+    @if (Auth::check())
+        <div class="text-right bg-success">
+            <h5 class="text-light">こんにちは、{{Auth::user()->name}}さん</h5>
+        </div>
+    @endif
 </header>
